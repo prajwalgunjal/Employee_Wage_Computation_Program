@@ -6,6 +6,7 @@ public class Start {
     private static final int WORKING_DAYS_PER_MONTH = 20;
     private static final int TOTAL_WORKING_HOURS = 100;
     public static void main(String[] args){
+        System.out.println("Welcome to Employee Management System");
         int empHrs=0, empWagePerMonth = 0, totalWorkingDays=0, totalEmpHours = 0;
 
         while(totalEmpHours <= TOTAL_WORKING_HOURS && totalWorkingDays < WORKING_DAYS_PER_MONTH) {
@@ -27,14 +28,12 @@ public class Start {
                     empHrs = 0;
                 }
             }
-
             totalEmpHours += empHrs;
             int empWagePerDay = empHrs * EMP_WAGE_PER_HOUR;
             empWagePerMonth += empWagePerDay;
 
             System.out.println("Emp Wage Per Day : "+empWagePerDay);
         }
-
         System.out.println("Emp Wage Per Month : "+empWagePerMonth);
     }
 }
