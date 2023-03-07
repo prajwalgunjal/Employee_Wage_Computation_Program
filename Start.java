@@ -5,35 +5,44 @@ public class Start {
     private static final int EMP_WAGE_PER_HOUR = 20;
     private static final int WORKING_DAYS_PER_MONTH = 20;
     private static final int TOTAL_WORKING_HOURS = 100;
-    public static void main(String[] args){
-        System.out.println("Welcome to Employee Management System");
-        int empHrs=0, empWagePerMonth = 0, totalWorkingDays=0, totalEmpHours = 0;
 
-        while(totalEmpHours <= TOTAL_WORKING_HOURS && totalWorkingDays < WORKING_DAYS_PER_MONTH) {
 
-            totalWorkingDays ++;
-            int empType = (int)Math.floor(Math.random() * 10) % 3;
 
-            switch (empType) {
-                case IS_FULL_TIME -> {
-                    System.out.println("Employee is Doing Full Time:");
-                    empHrs = 8;
-                }
-                case IS_PART_TIME -> {
-                    System.out.println("Employee is Doing Part Time:");
-                    empHrs = 4;
-                }
-                default -> {
-                    System.out.println("Employee is Absent:");
-                    empHrs = 0;
-                }
+public static void CalculateWage(){
+    System.out.println("Welcome to Employee Management System");
+    int empHrs=0, empWagePerMonth = 0, totalWorkingDays=0, totalEmpHours = 0;
+
+    while(totalEmpHours <= TOTAL_WORKING_HOURS && totalWorkingDays < WORKING_DAYS_PER_MONTH) {
+
+        totalWorkingDays ++;
+        int empType = (int)Math.floor(Math.random() * 10) % 3;
+
+        switch (empType) {
+            case IS_FULL_TIME -> {
+                System.out.println("Employee is Doing Full Time:");
+                empHrs = 8;
             }
-            totalEmpHours += empHrs;
-            int empWagePerDay = empHrs * EMP_WAGE_PER_HOUR;
-            empWagePerMonth += empWagePerDay;
-
-            System.out.println("Emp Wage Per Day : "+empWagePerDay);
+            case IS_PART_TIME -> {
+                System.out.println("Employee is Doing Part Time:");
+                empHrs = 4;
+            }
+            default -> {
+                System.out.println("Employee is Absent:");
+                empHrs = 0;
+            }
         }
-        System.out.println("Emp Wage Per Month : "+empWagePerMonth);
+        totalEmpHours += empHrs;
+        int empWagePerDay = empHrs * EMP_WAGE_PER_HOUR;
+        empWagePerMonth += empWagePerDay;
+
+        System.out.println("Emp Wage Per Day : "+empWagePerDay);
+    }
+    System.out.println("Emp Wage Per Month : "+empWagePerMonth);
+
+}
+    public static void main(String[] args){
+    Start s = new Start();
+    s.CalculateWage();
+
     }
 }
