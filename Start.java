@@ -1,48 +1,67 @@
 package com.bridgelabz;
 public class Start {
-    private static final int IS_FULL_TIME = 1;
-    private static final int IS_PART_TIME = 2;
-    private static final int EMP_WAGE_PER_HOUR = 20;
-    private static final int WORKING_DAYS_PER_MONTH = 20;
-    private static final int TOTAL_WORKING_HOURS = 100;
 
+private static final int IS_FULL_TIME = 1;
+private static final int IS_PART_TIME = 2;
 
+private final String company;
+private final int empRate;
+private final int numOFDays;
+private final int maxHours;
+private int empWagePerMonth;
 
-public static void CalculateWage(){
-    System.out.println("Welcome to Employee Management System");
-    int empHrs=0, empWagePerMonth = 0, totalWorkingDays=0, totalEmpHours = 0;
+public Start(String company, int empRate, int numOFDays, int maxHours) {
+        this.company = company;
+        this.empRate = empRate;
+        this.numOFDays = numOFDays;
+        this.maxHours = maxHours;
+        }
 
-    while(totalEmpHours <= TOTAL_WORKING_HOURS && totalWorkingDays < WORKING_DAYS_PER_MONTH) {
+public void calculateEmpWageForCompany() {
 
-        totalWorkingDays ++;
-        int empType = (int)Math.floor(Math.random() * 10) % 3;
+        int empHrs = 0, totalWorkingdays = 0, totalEmpHours = 0;
+
+        while (totalEmpHours <= maxHours && totalWorkingdays < numOFDays) {
+
+        totalWorkingdays++;
+        int empType = (int) Math.floor(Math.random() * 10) % 3;
 
         switch (empType) {
-            case IS_FULL_TIME -> {
-                System.out.println("Employee is Doing Full Time:");
-                empHrs = 8;
-            }
-            case IS_PART_TIME -> {
-                System.out.println("Employee is Doing Part Time:");
-                empHrs = 4;
-            }
-            default -> {
-                System.out.println("Employee is Absent:");
-                empHrs = 0;
-            }
+        case IS_FULL_TIME:
+        System.out.println("Employee Doing Full Time:");
+        empHrs = 8;
+        break;
+        case IS_PART_TIME:
+        System.out.println("Employee Doing Part Time:");
+        empHrs = 4;
+        break;
+        default:
+        System.out.println("Employee Is Absent:");
+        empHrs = 0;
         }
+
         totalEmpHours += empHrs;
-        int empWagePerDay = empHrs * EMP_WAGE_PER_HOUR;
+        int empWagePerDay = empHrs * empRate;
         empWagePerMonth += empWagePerDay;
+        System.out.println("Emp Wage Per Day : " + empWagePerDay);
+        }
 
-        System.out.println("Emp Wage Per Day : "+empWagePerDay);
+        }
+@Override
+public String toString() {
+        return "Emp Wage Per Month for Company " + company + " is : " + empWagePerMonth;
+        }
+
+public static void main(String[] args) {
+
+        Start obj1 = new Start("Dmart", 20, 2, 10);
+        Start obj2 = new Start("bigbazzar", 40, 5, 20);
+
+        obj1.calculateEmpWageForCompany();
+        System.out.println(obj1);
+        System.out.println();
+        obj2.calculateEmpWageForCompany();
+        System.out.println(obj2);
     }
-    System.out.println("Emp Wage Per Month : "+empWagePerMonth);
 
-}
-    public static void main(String[] args){
-    Start s = new Start();
-    s.CalculateWage();
-
-    }
 }
