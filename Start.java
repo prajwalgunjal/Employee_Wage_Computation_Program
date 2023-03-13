@@ -1,67 +1,84 @@
 package com.bridgelabz;
+import java.util.Scanner;
 public class Start {
+        public static final int IsFullTime=1;
+        public static final int IsPartTime = 2;
+        public static int EmpWagePerHour, WorkingDaysPerMonth, TotalWorkingHours;
 
-private static final int IS_FULL_TIME = 1;
-private static final int IS_PART_TIME = 2;
-
-private final String company;
-private final int empRate;
-private final int numOFDays;
-private final int maxHours;
-private int empWagePerMonth;
-
-public Start(String company, int empRate, int numOFDays, int maxHours) {
-        this.company = company;
-        this.empRate = empRate;
-        this.numOFDays = numOFDays;
-        this.maxHours = maxHours;
+        public void EmpWageBuilder1() {
+                EmpWagePerHour=300;
+                WorkingDaysPerMonth=20;
+                TotalWorkingHours=100;
+                System.out.println("Total Company Wage: "+(EmpWagePerHour*TotalWorkingHours));
         }
 
-public void calculateEmpWageForCompany() {
-
-        int empHrs = 0, totalWorkingdays = 0, totalEmpHours = 0;
-
-        while (totalEmpHours <= maxHours && totalWorkingdays < numOFDays) {
-
-        totalWorkingdays++;
-        int empType = (int) Math.floor(Math.random() * 10) % 3;
-
-        switch (empType) {
-        case IS_FULL_TIME:
-        System.out.println("Employee Doing Full Time:");
-        empHrs = 8;
-        break;
-        case IS_PART_TIME:
-        System.out.println("Employee Doing Part Time:");
-        empHrs = 4;
-        break;
-        default:
-        System.out.println("Employee Is Absent:");
-        empHrs = 0;
+        public void EmpWageBuilder2() {
+                EmpWagePerHour=500;
+                WorkingDaysPerMonth=23;
+                TotalWorkingHours=120;
+                System.out.println("Total Company Wage: "+(EmpWagePerHour*TotalWorkingHours));
         }
 
-        totalEmpHours += empHrs;
-        int empWagePerDay = empHrs * empRate;
-        empWagePerMonth += empWagePerDay;
-        System.out.println("Emp Wage Per Day : " + empWagePerDay);
+        public void EmpWageBuilder3() {
+                EmpWagePerHour=200;
+                WorkingDaysPerMonth=25;
+                TotalWorkingHours=150;
+                System.out.println("Total Company Wage: "+(EmpWagePerHour*TotalWorkingHours));
         }
 
+        public void ComputeWage(){
+                int empHrs, empWagePerDay, empWagePerMonth=0, totalWorkingDays=0, totalEmpHours = 0, totalWage;
+                while(totalEmpHours <= TotalWorkingHours && totalWorkingDays < WorkingDaysPerMonth) {
+                        totalWorkingDays++;
+                        double empCheck = Math.floor(Math.random() * 10) % 2;
+                        switch ((int) empCheck) {
+                                case IsFullTime:
+                                        System.out.println("Employee is Doing Full Time:");
+                                        empHrs = 8;
+                                        break;
+                                case IsPartTime:
+                                        System.out.println("Employee is Doing Part Time:");
+                                        empHrs = 4;
+                                        break;
+                                default:
+                                        System.out.println("Employee is Absent:");
+                                        empHrs = 0;
+                                        break;
+                        }
+                        totalEmpHours+=empHrs;
+                        empWagePerDay = empHrs * EmpWagePerHour;
+                        empWagePerMonth += empWagePerDay;
+                        System.out.println("Employee Wage per Day: " + empWagePerDay);
+                }
+                System.out.println("Employee Wage Per Month : "+empWagePerMonth);
+                totalWage= empWagePerMonth * 12;
+                System.out.println("Total Wage of the Employee Per Year: "+totalWage);
         }
-@Override
-public String toString() {
-        return "Emp Wage Per Month for Company " + company + " is : " + empWagePerMonth;
+        public static void main(String[] args) {
+
+                Scanner in = new Scanner(System.in);
+                System.out.println("Welcome to Employee Wage Computation Program On Master Branch");
+                System.out.println("----------------------------------------------------------------------");
+                System.out.println("Enter the Company Name: \n1.TCS\n2.Cognizant\n3.Infosys");
+                int company= in.nextInt();
+                Start s= new Start();
+                switch (company){
+                        case 1:
+                                s.EmpWageBuilder1();
+                                s.ComputeWage();
+                                break;
+                        case 2:
+                                s.EmpWageBuilder2();
+                                s.ComputeWage();
+                                break;
+                        case 3:
+                                s.EmpWageBuilder3();
+                                s.ComputeWage();
+                                break;
+                        default:
+                                System.out.println("Enter a valid company!!!");
+                                break;
+                }
+
         }
-
-public static void main(String[] args) {
-
-        Start obj1 = new Start("Dmart", 20, 2, 10);
-        Start obj2 = new Start("bigbazzar", 40, 5, 20);
-
-        obj1.calculateEmpWageForCompany();
-        System.out.println(obj1);
-        System.out.println();
-        obj2.calculateEmpWageForCompany();
-        System.out.println(obj2);
-    }
-
 }
