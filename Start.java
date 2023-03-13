@@ -1,10 +1,14 @@
 package com.bridgelabz;
 import java.util.Scanner;
+interface Company {
+        void EmpWageBuilder();
+}
 public class Start {
+
         public static final int IsFullTime=1;
         public static final int IsPartTime = 2;
 
-        public static class CompanyEmpWage {
+        static class CompanyEmpWage implements Company{
                 String CompanyName;
                 int EmpWagePerHour;
                 int WorkingDaysPerMonth;
