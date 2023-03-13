@@ -7,6 +7,7 @@ interface company {
 }
 public class Start {
 
+
         public static final int IsFullTime=1;
         public static final int IsPartTime = 2;
 
@@ -36,24 +37,26 @@ public class Start {
                                 double empCheck = Math.floor(Math.random() * 10) % 2;
                                 switch ((int) empCheck) {
                                         case IsFullTime:
-                                                System.out.println("Employee is Doing Full Time!");
+                                                System.out.print("Employee is Doing Full Time!");
                                                 empHrs = 8;
                                                 break;
                                         case IsPartTime:
-                                                System.out.println("Employee is Doing Part Time!");
+                                                System.out.print("Employee is Doing Part Time!");
                                                 empHrs = 4;
                                                 break;
                                         default:
-                                                System.out.println("Employee is Absent!");
+                                                System.out.print("Employee is Absent!");
                                                 empHrs = 0;
                                                 break;
                                 }
                                 totalEmpHours+=empHrs;
                                 empWagePerDay = empHrs * EmpWagePerHour;
                                 empWagePerMonth += empWagePerDay;
-                                System.out.println("Employee Wage per Day: " + empWagePerDay);
+                                System.out.println(" "+empWagePerDay+" is added to Employee Wage");
                         }
                         System.out.println("_________________________________________________________");
+                        System.out.println("Employee Wage Per Day for FullTime: "+(8*EmpWagePerHour));
+                        System.out.println("Employee Wage Per Day for PartTime: "+(4*EmpWagePerHour));
                         System.out.println("Employee Wage Per Month : "+empWagePerMonth);
                         totalWage= empWagePerMonth * 12;
                         System.out.println("Total Wage of the Employee Per Year: "+totalWage);
