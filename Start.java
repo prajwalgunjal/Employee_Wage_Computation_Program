@@ -7,7 +7,6 @@ interface company {
 }
 public class Start {
 
-
         public static final int IsFullTime=1;
         public static final int IsPartTime = 2;
 
@@ -27,6 +26,15 @@ public class Start {
                         WorkingDaysPerMonth = in.nextInt();
                         System.out.print("Enter the Total Working Hours for an Employee in a Month: ");
                         TotalWorkingHours = in.nextInt();
+                }
+
+                public void CompanyWage(){
+                        System.out.println("_________________________________________________________");
+                        System.out.println("Company Wage Per Day for FullTime: "+(8*EmpWagePerHour));
+                        System.out.println("Company Wage Per Day for PartTime: "+(4*EmpWagePerHour));
+                        System.out.println("Company Wage Per Month : "+((EmpWagePerHour)*(TotalWorkingHours)));
+                        System.out.println("Total Wage by Company per Year: "+((EmpWagePerHour)*(TotalWorkingHours)*12));
+                        System.out.println();
                 }
 
                 public void EmpWageBuilder(){
@@ -76,18 +84,29 @@ public class Start {
 
                 for(int i=0;i<10;i++){
                         System.out.println("******************:MENU:******************");
-                        System.out.println("PRESS 1: To Calculate the wage in a Company.");
-                        System.out.println("PRESS 2: To EXIT.");
+                        System.out.println("PRESS 1: To Calculate an Employee's wage in a Company.");
+                        System.out.println("PRESS 2: To Calculate the Total Wage by Company.");
+                        System.out.println("PRESS 3: To EXIT.");
                         int choice= in.nextInt();
-                        if (choice == 1) {
-                                System.out.println("Enter the details:");
-                                CompanyEmpWage Company= new CompanyEmpWage();
-                                CompanyList.add(Company);
-                                System.out.println("_________________________________________________");
-                                Company.EmpWageBuilder();
+                        switch (choice) {
+                                case 1:
+                                        System.out.println("Enter the details:");
+                                        CompanyEmpWage Company1 = new CompanyEmpWage();
+                                        CompanyList.add(Company1);
+                                        System.out.println("_________________________________________________");
+                                        Company1.EmpWageBuilder();
+                                        break;
+                                case 2:
+                                        System.out.println("Enter the details:");
+                                        CompanyEmpWage Company2 = new CompanyEmpWage();
+                                        CompanyList.add(Company2);
+                                        System.out.println("_________________________________________________");
+                                        Company2.CompanyWage();
+                                        break;
+                                default:
+                                        i = 10;
+                                        break;
                         }
-                        else
-                                i=10;
                 }
                 System.out.println(CompanyList);
 
